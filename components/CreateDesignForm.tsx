@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { createDesign } from "@/app/designs/create/actions"
 
 export default function CreateDesignForm() {
   const [designName, setDesignName] = useState("")
@@ -14,20 +15,14 @@ export default function CreateDesignForm() {
     setWallWidth(event.target.value)
   }
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-
-    console.log("Design Name:", designName)
-    console.log("Wall Width:", wallWidth)
-  }
-
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form action={createDesign} className="space-y-4">
       <div>
         <label htmlFor="designName">Design Name</label>
 
         <input
           id="designName"
+          name="designName"
           type="text"
           value={designName}
           onChange={handleDesignNameChange}
@@ -40,6 +35,7 @@ export default function CreateDesignForm() {
 
         <input
           id="wallWidth"
+          name="wallWidth"
           type="number"
           value={wallWidth}
           onChange={handleWallWidthChange}
