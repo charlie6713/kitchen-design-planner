@@ -1,30 +1,45 @@
 import Link from "next/link"
-import AddProductButton from "./AddProductButton"
+import type { Product } from "@/data/products"
 
 type ProductCardProps = {
-  id: number
-  name: string
-  priceCents: number
+  product: Product
 }
 
 export default function ProductCard(props: ProductCardProps) {
-  const id = props.id
-  const name = props.name
-  const priceCents = props.priceCents
+  const product = props.product
 
-  const productUrl = `/products/${id}`
+  const price = product.priceCents / 100
 
   return (
-    <div className="border p-4">
-      <h2 className="text-xl font-bold">{name}</h2>
+    <article className="rounded-xl border border-gray-200 bg-white p-3 shadow-sm">
+      <div className="flex h-56 items-center justify-center rounded-lg bg-[#f3efe9]">
+        <span className="text-sm text-gray-400">
+          Product image
+        </span>
+      </div>
 
-      <p>${priceCents / 100}</p>
+      <div className="px-1 pb-1 pt-4">
+        <h2 className="text-lg font-semibold text-gray-950">
+          {product.name}
+        </h2>
 
-      <Link href={productUrl} className="mr-4 underline">
-        View Product
-      </Link>
+        <p className="mt-1 text-gray-500">
+          {product.widthMm} W × {product.heightMm} H × {product.depthMm} D mm
+        </p>
 
-      <AddProductButton productName={name} />
-    </div>
+        <div className="mt-5 flex items-center justify-between">
+          <p className="text-xl font-semibold text-amber-700">
+            ${price.toLocaleString()}
+          </p>
+
+          <Link
+            href={`/products/${product.id}`}
+            className="rounded-md border border-green-800 px-6 py-2 text-green-900"
+          >
+            View details
+          </Link>
+        </div>
+      </div>
+    </article>
   )
 }

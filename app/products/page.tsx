@@ -1,4 +1,6 @@
 import CategorySidebar from "@/components/CategorySidebar"
+import ProductGrid from "@/components/ProductGrid"
+import { products } from "@/data/products"
 
 export default function ProductsPage() {
   return (
@@ -24,9 +26,7 @@ export default function ProductsPage() {
           </div>
 
           <div className="mt-6">
-            <p className="text-gray-500">
-              Product cards will go here.
-            </p>
+            <ProductGrid products={products} />
           </div>
         </section>
       </div>
