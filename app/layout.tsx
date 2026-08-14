@@ -1,20 +1,19 @@
-import type { ReactNode } from "react"
+import type { Metadata } from "next"
 import "./globals.css"
-import Navbar from "@/components/Navbar"
+import AppHeader from "@/components/AppHeader"
 
-export default function RootLayout({
-  children,
-}: {
-  children: ReactNode
-}) {
+export const metadata: Metadata = {
+  title: "Kitchen Design Planner",
+  description: "Kitchen furniture selection and design planner",
+}
+
+export default function RootLayout(props: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body>
-        <Navbar />
+        <AppHeader />
 
-        <main className="p-6">
-          {children}
-        </main>
+        <main>{props.children}</main>
       </body>
     </html>
   )
