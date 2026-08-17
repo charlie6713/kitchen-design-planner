@@ -6,6 +6,7 @@ export type Product = {
   heightMm: number
   depthMm: number
   priceCents: number
+  imagePath: string
 }
 
 export const products: Product[] = [
@@ -17,6 +18,7 @@ export const products: Product[] = [
     heightMm: 720,
     depthMm: 560,
     priceCents: 84900,
+    imagePath: "/products/oak-base-cabinet.png",
   },
   {
     id: 2,
@@ -26,6 +28,7 @@ export const products: Product[] = [
     heightMm: 720,
     depthMm: 320,
     priceCents: 62900,
+    imagePath: "/products/sage-wall-cabinet.png",
   },
   {
     id: 3,
@@ -35,6 +38,7 @@ export const products: Product[] = [
     heightMm: 2100,
     depthMm: 560,
     priceCents: 124900,
+    imagePath: "/products/pantry-tower.png",
   },
   {
     id: 4,
@@ -44,6 +48,7 @@ export const products: Product[] = [
     heightMm: 595,
     depthMm: 560,
     priceCents: 109900,
+    imagePath: "/products/built-in-oven.png",
   },
   {
     id: 5,
@@ -53,6 +58,7 @@ export const products: Product[] = [
     heightMm: 60,
     depthMm: 520,
     priceCents: 78900,
+    imagePath: "/products/induction-cooktop.png",
   },
   {
     id: 6,
@@ -62,5 +68,6 @@ export const products: Product[] = [
     heightMm: 818,
     depthMm: 550,
     priceCents: 139900,
+    imagePath: "/products/integrated-dishwasher.png",
   },
 ]

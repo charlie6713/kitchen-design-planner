@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import type { Product } from "@/data/products"
 
@@ -7,15 +8,18 @@ type ProductCardProps = {
 
 export default function ProductCard(props: ProductCardProps) {
   const product = props.product
-
   const price = product.priceCents / 100
 
   return (
     <article className="rounded-xl border border-gray-200 bg-white p-3 shadow-sm">
-      <div className="flex h-56 items-center justify-center rounded-lg bg-[#f3efe9]">
-        <span className="text-sm text-gray-400">
-          Product image
-        </span>
+      <div className="relative h-56 overflow-hidden rounded-lg bg-[#f3efe9]">
+        <Image
+          src={product.imagePath}
+          alt={product.name}
+          fill
+          sizes="33vw"
+          className="object-contain p-3"
+        />
       </div>
 
       <div className="px-1 pb-1 pt-4">
