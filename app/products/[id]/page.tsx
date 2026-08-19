@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import ProductActions from "@/components/ProductActions"
 import { products } from "@/data/products"
 
 type ProductPageProps = {
@@ -51,6 +52,7 @@ export default async function ProductPage(props: ProductPageProps) {
                 src={product.imagePath}
                 alt={product.name}
                 fill
+                sizes="50vw"
                 className="object-contain p-10"
               />
             </div>
@@ -100,27 +102,7 @@ export default async function ProductPage(props: ProductPageProps) {
               </div>
             </div>
 
-            <div className="mt-6 flex w-40 items-center rounded-lg border border-gray-200 bg-white">
-              <button className="flex-1 px-4 py-3 text-green-900">
-                −
-              </button>
-
-              <span className="border-x border-gray-200 px-5 py-3">
-                1
-              </span>
-
-              <button className="flex-1 px-4 py-3 text-green-900">
-                +
-              </button>
-            </div>
-
-            <button className="mt-3 w-full rounded-lg bg-green-900 py-3 font-medium text-white">
-              Add to current design
-            </button>
-
-            <button className="mt-3 w-full rounded-lg border border-green-900 py-3 font-medium text-green-900">
-              Replace selected product
-            </button>
+            <ProductActions productId={product.id} />
           </section>
         </div>
       </div>
