@@ -1,36 +1,239 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kitchen Design Planner
 
-## Getting Started
+A full-stack kitchen planning web application for browsing kitchen products, creating single-wall kitchen designs, validating available space, calculating costs, and saving designs for later editing.
 
-First, run the development server:
+Built with **Next.js, TypeScript, Payload CMS, PostgreSQL, Docker, GitHub Actions, and Azure**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## Features
+
+* Browse kitchen cabinets and appliances
+* Search and filter products by category
+* View product specifications, dimensions, price, finish, and SKU
+* Create and manage kitchen designs
+* Set kitchen wall width
+* Add, remove, replace, and update product quantities
+* Automatically calculate used wall width
+* Prevent designs from exceeding available wall space
+* Automatically calculate total design cost
+* Save designs to PostgreSQL
+* Reopen and continue editing saved designs
+* Manage products through Payload CMS
+* Automated unit, integration, and end-to-end testing
+* Docker-based local development
+* Automated CI/CD deployment to Azure
+
+---
+
+## Tech Stack
+
+| Area               | Technology               |
+| ------------------ | ------------------------ |
+| Full Stack         | Next.js, React           |
+| Language           | TypeScript               |
+| Styling            | Tailwind CSS             |
+| CMS                | Payload CMS              |
+| Database           | PostgreSQL               |
+| Testing            | Vitest, Playwright       |
+| Containerisation   | Docker, Docker Compose   |
+| CI/CD              | GitHub Actions           |
+| Container Registry | Azure Container Registry |
+| Deployment         | Azure App Service        |
+
+---
+
+## Application Pages
+
+```text
+/products
+Product Catalog
+
+/products/[id]
+Product Details
+
+/designs
+Saved Kitchen Designs
+
+/designs/create
+Create Kitchen Design
+
+/designs/[id]
+Kitchen Design Editor
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Architecture
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The application uses a **Full-Stack Monolithic Architecture** with Next.js handling both UI and server-side logic.
 
-## Learn More
+```text
+Browser
+   ↓
+Next.js Application
+   │
+   ├── React UI
+   ├── Server Components
+   ├── Client Components
+   ├── Server Actions
+   └── Payload CMS
+          ↓
+      PostgreSQL
+```
 
-To learn more about Next.js, take a look at the following resources:
+Server Components are used by default, while Client Components are limited to areas requiring browser-side interaction such as filtering, searching, quantity controls, and design editing.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Database Model
 
-## Deploy on Vercel
+Main entities:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```text
+Category
+Product
+User
+KitchenDesign
+DesignItem
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Relationships:
+
+```text
+Category 1 ─── N Product
+
+User 1 ─── N KitchenDesign
+
+KitchenDesign 1 ─── N DesignItem
+
+Product 1 ─── N DesignItem
+```
+
+Product prices are stored as integer cents and dimensions are stored in millimetres.
+
+---
+
+## Local Development
+
+### Requirements
+
+* Node.js
+* npm
+* Docker
+* Docker Compose
+
+### Clone the repository
+
+```bash
+git clone <repository-url>
+cd kitchen-design-planner
+```
+
+### Configure environment variables
+
+Create:
+
+```text
+.env.local
+```
+
+Example:
+
+```env
+DATABASE_URL=your_postgresql_connection
+PAYLOAD_SECRET=your_payload_secret
+```
+
+### Start the application
+
+```bash
+docker compose up
+```
+
+Then open:
+
+```text
+http://localhost:3000
+```
+
+---
+
+## Testing
+
+Run unit and integration tests:
+
+```bash
+npm run test
+```
+
+Run end-to-end tests:
+
+```bash
+npx playwright test
+```
+
+Testing covers:
+
+* Price calculations
+* Quantity updates
+* Wall width validation
+* Product and design database operations
+* Save and reload behaviour
+* Critical user workflows
+
+---
+
+## CI/CD
+
+Pull requests automatically run:
+
+```text
+ESLint
+↓
+TypeScript Type Check
+↓
+Vitest
+↓
+PostgreSQL Integration Tests
+↓
+Next.js Build
+↓
+Docker Build
+```
+
+After changes are merged into `main`:
+
+```text
+GitHub Actions
+↓
+Build Docker Image
+↓
+Azure Container Registry
+↓
+Database Migration
+↓
+Azure App Service
+↓
+Health Check
+↓
+Playwright Smoke Test
+```
+
+---
+
+## Deployment
+
+The production application is deployed using:
+
+```text
+User
+↓
+Azure App Service
+↓
+Next.js Docker Container
+↓
+PostgreSQL
+```
+
+Docker images are stored in **Azure Container Registry** and deployed automatically through **GitHub Actions**.
