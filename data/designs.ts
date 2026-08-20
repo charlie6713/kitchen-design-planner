@@ -5,6 +5,7 @@ export type KitchenDesign = {
   productCount: number
   totalPriceCents: number
   updatedText: string
+  updatedAt: string
   isCurrent: boolean
 }
 
@@ -16,7 +17,9 @@ export const designs: KitchenDesign[] = [
     productCount: 6,
     totalPriceCents: 484400,
     updatedText: "Updated today",
+    updatedAt: "2026-08-20T10:00:00",
     isCurrent: true,
+    
   },
   {
     id: 2,
@@ -25,6 +28,7 @@ export const designs: KitchenDesign[] = [
     productCount: 5,
     totalPriceCents: 397600,
     updatedText: "Updated 2 days ago",
+    updatedAt: "2026-08-18T10:00:00",
     isCurrent: false,
   },
   {
@@ -34,6 +38,7 @@ export const designs: KitchenDesign[] = [
     productCount: 8,
     totalPriceCents: 629200,
     updatedText: "Updated 5 days ago",
+    updatedAt: "2026-08-15T10:00:00",
     isCurrent: false,
   },
   {
@@ -43,6 +48,7 @@ export const designs: KitchenDesign[] = [
     productCount: 4,
     totalPriceCents: 289000,
     updatedText: "Updated 12 Aug",
+    updatedAt: "2026-08-12T10:00:00",
     isCurrent: false,
   },
   {
@@ -52,6 +58,7 @@ export const designs: KitchenDesign[] = [
     productCount: 7,
     totalPriceCents: 561000,
     updatedText: "Updated 8 Aug",
+    updatedAt: "2026-08-08T10:00:00",
     isCurrent: false,
   },
 ]

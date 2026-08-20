@@ -1,13 +1,20 @@
+"use client"
+
 import Link from "next/link"
 import type { KitchenDesign } from "@/data/designs"
 
 type DesignCardProps = {
   design: KitchenDesign
+  onDelete: (designId: number) => void
 }
 
 export default function DesignCard(props: DesignCardProps) {
   const design = props.design
   const totalPrice = design.totalPriceCents / 100
+
+  function handleDelete() {
+    props.onDelete(props.design.id)
+  }
 
   return (
     <article className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
@@ -63,6 +70,7 @@ export default function DesignCard(props: DesignCardProps) {
 
           <button
             type="button"
+            onClick={handleDelete}
             className="px-4 py-3 text-green-900"
           >
             Delete
